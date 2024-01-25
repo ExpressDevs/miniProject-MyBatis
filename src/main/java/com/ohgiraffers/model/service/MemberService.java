@@ -47,16 +47,15 @@ public class MemberService {
 
         memberMapper = sqlSession.getMapper(MemberMapper.class);
 
-        boolean checkId = memberMapper.signUpIdCheck(id);
-
-
         boolean check = false;
 
-        if (checkId) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("id", id);
+        MemberDTO memberDTO = memberMapper.signUpIdCheck(map);
+
+        if (memberDTO != null) {
             check = true;
         }
-
-
         sqlSession.close();
         return check;
     }
@@ -90,12 +89,12 @@ public class MemberService {
         return md;
     }
 
-    public void updateMileage(int updateMileage, MemberDTO memberDTO) {
+    public void updateMileage(MemberDTO memberDTO) {
         SqlSession sqlSession = getMemberSqlSession();
 
         memberMapper = sqlSession.getMapper(MemberMapper.class);
 
-        int result = memberMapper.updateMileage(updateMileage, memberDTO);
+        int result = memberMapper.updateMileage(memberDTO);
 
         if (result > 0) {
             sqlSession.commit();

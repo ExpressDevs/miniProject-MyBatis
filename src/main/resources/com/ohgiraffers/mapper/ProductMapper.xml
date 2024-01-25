@@ -25,7 +25,7 @@
         VALUES (
         #{ticketNum}
         ,#{senior}
-        ,#{adultTicketCount}
+        ,#{seniorTicketCount}
         )
     </insert>
     <insert id="insertTeenagerGoods" parameterType="com.ohgiraffers.model.DTO.TicketDTO">
@@ -37,7 +37,7 @@
         VALUES (
         #{ticketNum}
         ,#{teenager}
-        ,#{adultTicketCount}
+        ,#{teenagerTicketCount}
         )
     </insert>
     <insert id="insertChildrenGoods" parameterType="com.ohgiraffers.model.DTO.TicketDTO">
@@ -49,7 +49,7 @@
         VALUES (
         #{ticketNum}
         ,#{children}
-        ,#{adultTicketCount}
+        ,#{teenagerTicketCount}
         )
     </insert>
 </mapper>

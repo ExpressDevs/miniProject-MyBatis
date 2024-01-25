@@ -123,7 +123,7 @@ public class MemberManager {
             System.out.println("성함을 입력해주세요");
             String name = sc.nextLine();
             for (MemberDTO member : memberList) {
-                if (member.getMember_name().equals(name)) {
+                if (member.getMemberName().equals(name)) {
                     System.out.println(member.getId());
                     return;
                 }
@@ -142,7 +142,7 @@ public class MemberManager {
             System.out.println("ID를 입력해주세요.");
             String id = sc.nextLine();
             for (MemberDTO member : memberList) {
-                if (member.getMember_name().equals(name) && member.getId().equals(id)) {
+                if (member.getMemberName().equals(name) && member.getId().equals(id)) {
                     System.out.println(member.getPassword());
                     return;
                 }

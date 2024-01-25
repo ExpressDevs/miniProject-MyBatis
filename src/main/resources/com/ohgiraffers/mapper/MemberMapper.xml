@@ -6,20 +6,15 @@
 
     <resultMap id="MemberResultMap" type="com.ohgiraffers.model.DTO.MemberDTO">
         <id property="id" column="id"/>
-        <result property="name" column="member_name"/>
-        <result property="age" column="member_age"/>
-        <result property="pwd" column="password"/>
-        <result property="mileage" column="member_mileage"/>
-        <result property="login" column="member_login"/>
+        <result property="memberName" column="member_name"/>
+        <result property="memberAge" column="member_age"/>
+        <result property="password" column="password"/>
+        <result property="memberMileage" column="member_mileage"/>
+        <result property="memberLogin" column="member_login"/>
     </resultMap>
 
     <resultMap id="idCheckResultMap" type="com.ohgiraffers.model.DTO.MemberDTO">
         <id property="id" column="id"/>
-    </resultMap>
-
-    <resultMap id="loginCheckResultMap" type="com.ohgiraffers.model.DTO.MemberDTO">
-        <id property="id" column="id"/>
-        <result property="password" column="password"/>
     </resultMap>
 
     <insert id="insertMember" parameterType="com.ohgiraffers.model.DTO.MemberDTO">
@@ -30,10 +25,10 @@
         ,password
         )
         VALUES (
-        #{name}
-        ,#{age}
+        #{memberName}
+        ,#{memberAge}
         ,#{id}
-        ,#{pwd}
+        ,#{password}
         )
     </insert>
 
@@ -44,7 +39,7 @@
                                 )
         VALUES (
         #{id}
-        ,#{pwd}
+        ,#{password}
         )
     </insert>
 
@@ -70,7 +65,7 @@
 
     <update id="updateMileage" parameterType="com.ohgiraffers.model.DTO.MemberDTO">
         UPDATE tbl_member
-           SET mileage = #{ updateMileage }
+           SET member_mileage = #{ memberMileage }
          WHERE id = #{ id }
     </update>
 </mapper>

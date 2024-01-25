@@ -2,27 +2,27 @@ package com.ohgiraffers.model.DTO;
 
 public class MemberDTO {
 
-    private String member_name;
-    private int member_age;
+    private String memberName;
+    private int memberAge;
     private String id;
     private String password;
-    private int member_mileage =0;
-    private int member_login = 1;
+    private int memberMileage =0;
+    private int memberLogin = 1;
     public MemberDTO() {
     }
 
-    public MemberDTO(String member_name, int member_age, String id, String password, int member_mileage) {
-        this.member_name = member_name;
-        this.member_age = member_age;
+    public MemberDTO(String memberName, int memberAge, String id, String password, int memberMileage) {
+        this.memberName = memberName;
+        this.memberAge = memberAge;
         this.id = id;
         this.password = password;
-        this.member_mileage = member_mileage;
+        this.memberMileage = memberMileage;
     }
 
-    public MemberDTO(String id, String password, int member_login) {
+    public MemberDTO(String id, String password, int memberLogin) {
         this.id = id;
         this.password = password;
-        this.member_login = 0;
+        this.memberLogin = 0;
     }
 
     public String getId() {
@@ -41,42 +41,42 @@ public class MemberDTO {
         this.password = password;
     }
 
-    public String getMember_name() {
-        return member_name;
+    public String getMemberName() {
+        return memberName;
     }
 
-    public void setMember_name(String member_name) {
-        this.member_name = member_name;
+    public void setMemberName(String memberName) {
+        this.memberName = memberName;
     }
 
-    public int getMember_age() {
-        return member_age;
+    public int getMemberAge() {
+        return memberAge;
     }
 
-    public void setMember_age(int member_age) {
-        this.member_age = member_age;
+    public void setMemberAge(int memberAge) {
+        this.memberAge = memberAge;
     }
 
-    public int getMember_mileage() {
-        return member_mileage;
+    public int getMemberMileage() {
+        return memberMileage;
     }
 
-    public void setMember_mileage(int member_mileage) {
-        this.member_mileage = member_mileage;
+    public void setMemberMileage(int memberMileage) {
+        this.memberMileage = memberMileage;
     }
 
     public void addMileage(int mileage) {
-        this.member_mileage += mileage;
+        this.memberMileage += mileage;
     }
 
     @Override
     public String toString() {
         return "MemberDTO{" +
-                "name='" + member_name + '\'' +
-                ", age=" + member_age +
+                "name='" + memberName + '\'' +
+                ", age=" + memberAge +
                 ", id='" + id + '\'' +
                 ", pwd='" + password + '\'' +
-                ", mileage=" + member_mileage +
+                ", mileage=" + memberMileage +
                 '}';
     }
 }
