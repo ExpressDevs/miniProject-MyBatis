@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ohgiraffers.mapper.ProductMapper">
+
+    <insert id="insertAdultGoods" parameterType="com.ohgiraffers.model.DTO.TicketDTO">
+        INSERT INTO tbl_goods(
+                                order_number
+                                ,goods
+                                ,goods_count
+                                )
+        VALUES (
+        #{ticketNum}
+        ,#{adult}
+        ,#{adultTicketCount}
+        )
+    </insert>
+    <insert id="insertSeniorGoods" parameterType="com.ohgiraffers.model.DTO.TicketDTO">
+        INSERT INTO tbl_goods(
+                                order_number
+                                ,goods
+                                ,goods_count
+                                )
+        VALUES (
+        #{ticketNum}
+        ,#{senior}
+        ,#{adultTicketCount}
+        )
+    </insert>
+    <insert id="insertTeenagerGoods" parameterType="com.ohgiraffers.model.DTO.TicketDTO">
+        INSERT INTO tbl_goods(
+                                order_number
+                                ,goods
+                                ,goods_count
+                                )
+        VALUES (
+        #{ticketNum}
+        ,#{teenager}
+        ,#{adultTicketCount}
+        )
+    </insert>
+    <insert id="insertChildrenGoods" parameterType="com.ohgiraffers.model.DTO.TicketDTO">
+        INSERT INTO tbl_goods(
+                                order_number
+                                ,goods
+                                ,goods_count
+                                )
+        VALUES (
+        #{ticketNum}
+        ,#{children}
+        ,#{adultTicketCount}
+        )
+    </insert>
+</mapper>
