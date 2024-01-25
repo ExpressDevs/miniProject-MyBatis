@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ohgiraffers.mapper.OrderMapper">
+    <insert id="insertOrder" parameterType="com.ohgiraffers.model.DTO.TicketDTO">
+        INSERT INTO tbl_order( order_number
+                             , id
+                             , departure_station
+                             , arrival_station
+                             , departure_time
+                             , billing_amount
+                             , payment_method
+                             , total_amount
+        )
+        VALUES (
+                 #{ticketNum}
+               , #{id}
+               , #{startStation}
+               , #{endStation}
+               , #{departureTime}
+               , #{billingAmount}
+               , #{paymentMethod}
+               , #{totalAmount}
+               )
+    </insert>
+</mapper>

@@ -1,7 +1,5 @@
 package com.ohgiraffers.model.DTO;
 
-import com.ohgiraffers.mapper.goods;
-
 public class TicketDTO {
 
     private String ticketNum;
@@ -187,7 +185,6 @@ public class TicketDTO {
 
         ticketInfo += " 입니다.";
 
-        goods.insertAll();
         System.out.println(ticketInfo);
     }
 

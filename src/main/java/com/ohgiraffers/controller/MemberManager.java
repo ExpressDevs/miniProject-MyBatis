@@ -1,7 +1,6 @@
 package com.ohgiraffers.controller;
 
 import com.ohgiraffers.model.DTO.MemberDTO;
-import com.ohgiraffers.mapper.MemberQuery;
 import com.ohgiraffers.model.service.MemberService;
 
 import java.util.Scanner;
@@ -54,7 +53,7 @@ public class MemberManager {
             String newId = sc.nextLine();
             Boolean isDuplicate = false;
           
-            if (mq.signUpIdCheck(newId)) {
+            if (ms.signUpIdCheck(newId)) {
                 isDuplicate = true;
             }
             if (isDuplicate) {
@@ -69,6 +68,7 @@ public class MemberManager {
     public MemberDTO memberLogin() {
 
         System.out.println("==============================================");
+        MemberDTO nowLoginMember;
         while (true) {
             System.out.print("아이디를 입력하세요: ");
             String inputID = sc.nextLine();
@@ -76,13 +76,8 @@ public class MemberManager {
             System.out.print("비밀번호를 입력하세요: ");
             String inputPwd = sc.nextLine();
 
-
-            mq.loginCheck(inputID, inputPwd);
-
-            MemberDTO nowLoginMember;
-
-            if (mq.loginCheck(inputID, inputPwd)) {
-                nowLoginMember = mq.nowLoginMember(inputID);
+            if (ms.loginCheck(inputID, inputPwd)) {
+                nowLoginMember = ms.nowLoginMember(inputID);
                 return nowLoginMember;
             }
             System.out.println("==============================================");
@@ -128,7 +123,7 @@ public class MemberManager {
             System.out.println("성함을 입력해주세요");
             String name = sc.nextLine();
             for (MemberDTO member : memberList) {
-                if (member.getName().equals(name)) {
+                if (member.getMember_name().equals(name)) {
                     System.out.println(member.getId());
                     return;
                 }
@@ -147,8 +142,8 @@ public class MemberManager {
             System.out.println("ID를 입력해주세요.");
             String id = sc.nextLine();
             for (MemberDTO member : memberList) {
-                if (member.getName().equals(name) && member.getId().equals(id)) {
-                    System.out.println(member.getPwd());
+                if (member.getMember_name().equals(name) && member.getId().equals(id)) {
+                    System.out.println(member.getPassword());
                     return;
                 }
             }

@@ -18,7 +18,7 @@ public class OrderTemplate {
     private static String USER = "ohgiraffers";
     private static String PASSWORD = "ohgiraffers";
 
-    public static SqlSession getProductSqlSession() {
+    public static SqlSession getOrderSqlSession() {
 
         if(sqlSessionFactory == null) {
             Environment environment = new Environment("dev"

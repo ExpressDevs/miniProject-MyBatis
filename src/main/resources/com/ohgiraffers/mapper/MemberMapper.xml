@@ -6,15 +6,20 @@
 
     <resultMap id="MemberResultMap" type="com.ohgiraffers.model.DTO.MemberDTO">
         <id property="id" column="id"/>
-        <result property="" column="member_name"/>
-        <result property="" column="member_age"/>
-        <result property="" column="password"/>
-        <result property="" column="member_mileage"/>
-        <result property="" column="member_login"/>
+        <result property="name" column="member_name"/>
+        <result property="age" column="member_age"/>
+        <result property="pwd" column="password"/>
+        <result property="mileage" column="member_mileage"/>
+        <result property="login" column="member_login"/>
     </resultMap>
 
-    <resultMap id="idCheck" type="com.ohgiraffers.model.DTO.MemberDTO">
+    <resultMap id="idCheckResultMap" type="com.ohgiraffers.model.DTO.MemberDTO">
         <id property="id" column="id"/>
+    </resultMap>
+
+    <resultMap id="loginCheckResultMap" type="com.ohgiraffers.model.DTO.MemberDTO">
+        <id property="id" column="id"/>
+        <result property="password" column="password"/>
     </resultMap>
 
     <insert id="insertMember" parameterType="com.ohgiraffers.model.DTO.MemberDTO">
@@ -43,9 +48,29 @@
         )
     </insert>
 
-    <select id="signUpIdCheck" resultMap="idCheck">
+    <select id="signUpIdCheck" resultMap="idCheckResultMap">
     SELECT id
     FROM tbl_member
-    WHERE #{ id }
+    WHERE id = #{ id }
     </select>
+
+    <select id="loginCheck" parameterType="map" resultType="com.ohgiraffers.model.DTO.MemberDTO">
+        SELECT id, password
+        FROM tbl_member
+        WHERE id = #{id}
+        AND password = #{password}
+    </select>
+
+
+    <select id="nowLoginMember" resultMap="MemberResultMap">
+        SELECT id, member_name, member_age, password, member_mileage, member_login
+          FROM tbl_member
+        WHERE id = #{ id }
+    </select>
+
+    <update id="updateMileage" parameterType="com.ohgiraffers.model.DTO.MemberDTO">
+        UPDATE tbl_member
+           SET mileage = #{ updateMileage }
+         WHERE id = #{ id }
+    </update>
 </mapper>
