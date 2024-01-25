@@ -4,6 +4,9 @@ import com.ohgiraffers.mapper.MemberMapper;
 import com.ohgiraffers.model.DTO.MemberDTO;
 import org.apache.ibatis.session.SqlSession;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static com.ohgiraffers.common.MemberTemplate.getMemberSqlSession;
 
 public class MemberService {
@@ -54,22 +57,25 @@ public class MemberService {
         }
 
 
+        sqlSession.close();
         return check;
     }
 
-    public boolean loginCheck(String id, String pwd) {
+    public boolean loginCheck(String id, String password) {
         SqlSession sqlSession = getMemberSqlSession();
 
         memberMapper = sqlSession.getMapper(MemberMapper.class);
 
-        boolean loginCheck = memberMapper.loginCheck(id, pwd);
-
         boolean check = false;
 
-        if (loginCheck) {
-            check = true;
+        Map<String, Object> map = new HashMap<>();
+        map.put("id", id);
+        map.put("password", password);
+        MemberDTO memberDTO = memberMapper.loginCheck(map);
+        if (memberDTO != null) {
+             check = true;
         }
-
+        sqlSession.close();
         return check;
     }
 
@@ -80,6 +86,24 @@ public class MemberService {
 
         MemberDTO md = memberMapper.nowLoginMember(id);
 
+        sqlSession.close();
         return md;
+    }
+
+    public void updateMileage(int updateMileage, MemberDTO memberDTO) {
+        SqlSession sqlSession = getMemberSqlSession();
+
+        memberMapper = sqlSession.getMapper(MemberMapper.class);
+
+        int result = memberMapper.updateMileage(updateMileage, memberDTO);
+
+        if (result > 0) {
+            sqlSession.commit();
+        } else {
+            sqlSession.rollback();
+        }
+
+        sqlSession.close();
+
     }
 }

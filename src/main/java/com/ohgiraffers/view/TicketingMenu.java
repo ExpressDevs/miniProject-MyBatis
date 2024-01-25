@@ -3,12 +3,8 @@ package com.ohgiraffers.view;
 import com.ohgiraffers.controller.MemberManager;
 import com.ohgiraffers.controller.PaymentManager;
 import com.ohgiraffers.controller.TicketingManager;
-import com.ohgiraffers.mapper.ProductMapper;
 import com.ohgiraffers.model.DTO.MemberDTO;
 import com.ohgiraffers.model.DTO.TicketDTO;
-import com.ohgiraffers.mapper.MemberQuery;
-import com.ohgiraffers.mapper.OrderQuery;
-import com.ohgiraffers.mapper.ProductQuery;
 import com.ohgiraffers.model.service.ProductService;
 
 import java.util.Scanner;
@@ -31,20 +27,19 @@ public class TicketingMenu {
     public void mainMenu() {        //  메소드 첫 구동
 
         createTicketNum();
-        td.setTicketNum(ticketNum);
-
         this.td = tm.startTicketing();
+        td.setTicketNum(ticketNum);
         loginMenu();  
 
-        pay.paymentMethod(selectLogin, tm.TimeSchedule(td), nowLoginMember, td);
-        oq.insertOrder(ticketNum
-                , nowLoginMember.getId()
-                , td.getStartStation()
-                , td.getEndStation()
-                , td.getDepartureTime()
-                , td.getBillingAmount()
-                , td.getPaymentMethod()
-                , td.getTotalAmount());
+//        pay.paymentMethod(selectLogin, tm.TimeSchedule(td), nowLoginMember, td);
+//        oq.insertOrder(ticketNum
+//                , nowLoginMember.getId()
+//                , td.getStartStation()
+//                , td.getEndStation()
+//                , td.getDepartureTime()
+//                , td.getBillingAmount()
+//                , td.getPaymentMethod()
+//                , td.getTotalAmount());
 
         if (td.getAdultTicketCount() > 0) {
             ps.insertAdultGoods(td);

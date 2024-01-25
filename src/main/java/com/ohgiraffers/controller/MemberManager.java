@@ -1,7 +1,6 @@
 package com.ohgiraffers.controller;
 
 import com.ohgiraffers.model.DTO.MemberDTO;
-import com.ohgiraffers.mapper.MemberQuery;
 import com.ohgiraffers.model.service.MemberService;
 
 import java.util.Scanner;
@@ -124,7 +123,7 @@ public class MemberManager {
             System.out.println("성함을 입력해주세요");
             String name = sc.nextLine();
             for (MemberDTO member : memberList) {
-                if (member.getName().equals(name)) {
+                if (member.getMember_name().equals(name)) {
                     System.out.println(member.getId());
                     return;
                 }
@@ -143,8 +142,8 @@ public class MemberManager {
             System.out.println("ID를 입력해주세요.");
             String id = sc.nextLine();
             for (MemberDTO member : memberList) {
-                if (member.getName().equals(name) && member.getId().equals(id)) {
-                    System.out.println(member.getPwd());
+                if (member.getMember_name().equals(name) && member.getId().equals(id)) {
+                    System.out.println(member.getPassword());
                     return;
                 }
             }

@@ -3,6 +3,8 @@ package com.ohgiraffers.mapper;
 import com.ohgiraffers.model.DTO.MemberDTO;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 public interface MemberMapper {
 
@@ -10,9 +12,11 @@ public interface MemberMapper {
     int insertNonMember(MemberDTO memberDTO);
     boolean signUpIdCheck(String id);
 
-    boolean loginCheck(String id, String pwd);
+    MemberDTO loginCheck(Map<String, Object> map);
 
     MemberDTO nowLoginMember(String id);
+
+    int updateMileage(int updateMileage, MemberDTO memberDTO);
 
 
 }

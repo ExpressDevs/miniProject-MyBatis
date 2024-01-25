@@ -2,7 +2,6 @@ package com.ohgiraffers.controller;
 
 import com.ohgiraffers.model.DTO.TicketDTO;
 import com.ohgiraffers.model.DTO.TrainDTO;
-import com.ohgiraffers.mapper.goods;
 
 import java.util.*;
 
@@ -13,7 +12,6 @@ public class TicketingManager {
     Scanner sc = new Scanner(System.in);
     private String startStation;
     private String endStation;
-    private goods goods = new goods();
     private TicketDTO td = new TicketDTO();
 
 
@@ -24,7 +22,7 @@ public class TicketingManager {
         String startStation = selectStartStation();         //  출발역 선택
         String endStation = selectEndStation(startStation); //  도착역 선택
 
-        td = TicketCount();
+        this.td = TicketCount();
         td.setStartStation(startStation);
         ArrayList<Integer> seatInfo;
 
@@ -230,30 +228,18 @@ public class TicketingManager {
                 case 1:
                     td.setAdultTicketCount(count);
                     td.setTotal(count);
-                    product = "일반";
-                    goods.insertTicketProduct(product);
-                    goods.insertTicketCount(count);
                     break;
                 case 2:
                     td.setSeniorTicketCount(count);
                     td.setTotal(count);
-                    product = "시니어";
-                    goods.insertTicketProduct(product);
-                    goods.insertTicketCount(count);
                     break;
                 case 3:
                     td.setTeenagerTicketCount(count);
                     td.setTotal(count);
-                    product = "어린이";
-                    goods.insertTicketProduct(product);
-                    goods.insertTicketCount(count);
                     break;
                 case 4:
                     td.setChildrenTicketCount(count);
                     td.setTotal(count);
-                    product = "영유아";
-                    goods.insertTicketProduct(product);
-                    goods.insertTicketCount(count);
                     break;
                 default:
                     System.out.println("==============================================");
