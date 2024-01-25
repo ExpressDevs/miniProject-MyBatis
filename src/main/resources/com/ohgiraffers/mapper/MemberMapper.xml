@@ -6,15 +6,20 @@
 
     <resultMap id="MemberResultMap" type="com.ohgiraffers.model.DTO.MemberDTO">
         <id property="id" column="id"/>
-        <result property="" column="member_name"/>
-        <result property="" column="member_age"/>
-        <result property="" column="password"/>
-        <result property="" column="member_mileage"/>
-        <result property="" column="member_login"/>
+        <result property="name" column="member_name"/>
+        <result property="age" column="member_age"/>
+        <result property="pwd" column="password"/>
+        <result property="mileage" column="member_mileage"/>
+        <result property="login" column="member_login"/>
     </resultMap>
 
     <resultMap id="idCheck" type="com.ohgiraffers.model.DTO.MemberDTO">
         <id property="id" column="id"/>
+    </resultMap>
+
+    <resultMap id="loginCheck" type="com.ohgiraffers.model.DTO.MemberDTO">
+        <id property="id" column="id"/>
+        <result property="pwd" column="password"/>
     </resultMap>
 
     <insert id="insertMember" parameterType="com.ohgiraffers.model.DTO.MemberDTO">
@@ -46,6 +51,19 @@
     <select id="signUpIdCheck" resultMap="idCheck">
     SELECT id
     FROM tbl_member
-    WHERE #{ id }
+    WHERE id = #{ id }
+    </select>
+
+    <select id="loginCheck" resultMap="loginCheck">
+        SELECT id, password
+        FROM tbl_member
+        WHERE id = #{ id }
+          AND password = #{ pwd }
+    </select>
+
+    <select id="nowLoginMember" resultMap="MemberResultMap">
+        SELECT id, member_name, member_age, password, member_mileage, member_login
+          FROM tbl_member
+        WHERE id = #{ id }
     </select>
 </mapper>

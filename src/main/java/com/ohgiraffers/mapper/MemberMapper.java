@@ -8,7 +8,11 @@ public interface MemberMapper {
 
     int insertMember(MemberDTO memberDTO);
     int insertNonMember(MemberDTO memberDTO);
-    String signUpIdCheck(String id);
+    boolean signUpIdCheck(String id);
+
+    boolean loginCheck(String id, String pwd);
+
+    MemberDTO nowLoginMember(String id);
 
 
 }

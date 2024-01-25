@@ -54,7 +54,7 @@ public class MemberManager {
             String newId = sc.nextLine();
             Boolean isDuplicate = false;
           
-            if (mq.signUpIdCheck(newId)) {
+            if (ms.signUpIdCheck(newId)) {
                 isDuplicate = true;
             }
             if (isDuplicate) {
@@ -69,6 +69,7 @@ public class MemberManager {
     public MemberDTO memberLogin() {
 
         System.out.println("==============================================");
+        MemberDTO nowLoginMember;
         while (true) {
             System.out.print("아이디를 입력하세요: ");
             String inputID = sc.nextLine();
@@ -76,13 +77,8 @@ public class MemberManager {
             System.out.print("비밀번호를 입력하세요: ");
             String inputPwd = sc.nextLine();
 
-
-            mq.loginCheck(inputID, inputPwd);
-
-            MemberDTO nowLoginMember;
-
-            if (mq.loginCheck(inputID, inputPwd)) {
-                nowLoginMember = mq.nowLoginMember(inputID);
+            if (ms.loginCheck(inputID, inputPwd)) {
+                nowLoginMember = ms.nowLoginMember(inputID);
                 return nowLoginMember;
             }
             System.out.println("==============================================");

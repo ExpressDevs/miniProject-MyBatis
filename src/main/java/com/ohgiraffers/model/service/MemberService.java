@@ -44,16 +44,42 @@ public class MemberService {
 
         memberMapper = sqlSession.getMapper(MemberMapper.class);
 
-        String checkId = memberMapper.signUpIdCheck(id);
+        boolean checkId = memberMapper.signUpIdCheck(id);
 
 
         boolean check = false;
 
-        if (checkId.equals(id)) {
+        if (checkId) {
             check = true;
         }
 
 
         return check;
+    }
+
+    public boolean loginCheck(String id, String pwd) {
+        SqlSession sqlSession = getMemberSqlSession();
+
+        memberMapper = sqlSession.getMapper(MemberMapper.class);
+
+        boolean loginCheck = memberMapper.loginCheck(id, pwd);
+
+        boolean check = false;
+
+        if (loginCheck) {
+            check = true;
+        }
+
+        return check;
+    }
+
+    public MemberDTO nowLoginMember(String id) {
+        SqlSession sqlSession = getMemberSqlSession();
+
+        memberMapper = sqlSession.getMapper(MemberMapper.class);
+
+        MemberDTO md = memberMapper.nowLoginMember(id);
+
+        return md;
     }
 }
