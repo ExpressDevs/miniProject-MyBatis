@@ -3,8 +3,10 @@ package com.ohgiraffers.view;
 import com.ohgiraffers.controller.MemberManager;
 import com.ohgiraffers.controller.PaymentManager;
 import com.ohgiraffers.controller.TicketingManager;
+import com.ohgiraffers.mapper.OrderMapper;
 import com.ohgiraffers.model.DTO.MemberDTO;
 import com.ohgiraffers.model.DTO.TicketDTO;
+import com.ohgiraffers.model.service.OrderService;
 import com.ohgiraffers.model.service.ProductService;
 
 import java.util.Scanner;
@@ -23,6 +25,7 @@ public class TicketingMenu {
     private TicketDTO td;
     private PaymentManager pay = new PaymentManager();
     private ProductService ps = new ProductService();
+    private OrderService os = new OrderService();
 
     public void mainMenu() {        //  메소드 첫 구동
 
@@ -31,15 +34,9 @@ public class TicketingMenu {
         td.setTicketNum(ticketNum);
         loginMenu();  
 
-//        pay.paymentMethod(selectLogin, tm.TimeSchedule(td), nowLoginMember, td);
-//        oq.insertOrder(ticketNum
-//                , nowLoginMember.getId()
-//                , td.getStartStation()
-//                , td.getEndStation()
-//                , td.getDepartureTime()
-//                , td.getBillingAmount()
-//                , td.getPaymentMethod()
-//                , td.getTotalAmount());
+        pay.paymentMethod(selectLogin, tm.TimeSchedule(td), nowLoginMember, td);
+        td.setId(nowLoginMember.getId());
+        os.insertOrder(td);
 
         if (td.getAdultTicketCount() > 0) {
             ps.insertAdultGoods(td);

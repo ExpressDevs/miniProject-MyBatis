@@ -10,13 +10,13 @@ public interface MemberMapper {
 
     int insertMember(MemberDTO memberDTO);
     int insertNonMember(MemberDTO memberDTO);
-    boolean signUpIdCheck(String id);
+    MemberDTO signUpIdCheck(Map<String, Object> map);
 
     MemberDTO loginCheck(Map<String, Object> map);
 
     MemberDTO nowLoginMember(String id);
 
-    int updateMileage(int updateMileage, MemberDTO memberDTO);
+    int updateMileage(MemberDTO memberDTO);
 
 
 }

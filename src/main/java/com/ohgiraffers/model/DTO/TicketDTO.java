@@ -3,6 +3,7 @@ package com.ohgiraffers.model.DTO;
 public class TicketDTO {
 
     private String ticketNum;
+    private String id;
     private String startStation;
     private String endStation;
     private String departureTime;
@@ -28,6 +29,14 @@ public class TicketDTO {
         this.teenagerTicketCount = teenagerTicketCount;
         this.childrenTicketCount = childrenTicketCount;
         this.startStation = startStation;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getTicketNum() {

@@ -207,7 +207,6 @@ public class TicketingManager {
             sc.nextLine();
 
             int count = 0;
-            String product = "";
             if (age > 0 && age < 5) {
                 System.out.println("==============================================");
                 System.out.print("구매하실 티켓 매수를 입력해주세요 : ");

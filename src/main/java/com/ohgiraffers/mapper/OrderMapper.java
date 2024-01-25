@@ -1,5 +1,7 @@
 package com.ohgiraffers.mapper;
 
+import com.ohgiraffers.model.DTO.TicketDTO;
+
 public interface OrderMapper {
-    int insertOrder(String ticketNum, String id, String startStation, String endStation, String departureTime, int billingAmount, String paymentMethod, int totalAmount);
+    int insertOrder(TicketDTO ticketDTO);
 }

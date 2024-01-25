@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class PaymentManager {
     Scanner sc = new Scanner(System.in);
-    private MemberService ms;
+    private MemberService ms = new MemberService();
     private MemberDTO nowLoginMember;
     private TicketDTO td;
     private int price;
@@ -19,7 +19,7 @@ public class PaymentManager {
         this.price = sum;
         this.nowLoginMember = nowLoginMember;
         if (selectLogin == 1) {
-            if (this.nowLoginMember.getMember_mileage() > 0) {      //  신규 회원가입고객이 바로 마일리지 사용할 수 없게 하기위함
+            if (this.nowLoginMember.getMemberMileage() > 0) {      //  신규 회원가입고객이 바로 마일리지 사용할 수 없게 하기위함
                 useMilege();
             }
         }
@@ -67,7 +67,7 @@ public class PaymentManager {
     public void useMilege() {
         while (true) {
             System.out.println("============= 마일리지 사용여부 =====================");
-            System.out.println("회원님이 보유중인 마일리지는 " + nowLoginMember.getMember_mileage() + "원입니다. 사용하시겠습니까?");
+            System.out.println("회원님이 보유중인 마일리지는 " + nowLoginMember.getMemberMileage() + "원입니다. 사용하시겠습니까?");
             System.out.println("1. 마일리지 사용");
             System.out.println("2. 마일리지 미사용");
             System.out.println("==============================================");
@@ -77,21 +77,22 @@ public class PaymentManager {
             switch (inputNum) {
                 case "1":
                     System.out.println("==============================================");
-                    System.out.println("보유 마일리지 : " + nowLoginMember.getMember_mileage() + "원");
+                    System.out.println("보유 마일리지 : " + nowLoginMember.getMemberMileage() + "원");
                     System.out.print("사용하실 마일리지 금액을 입력해 주세요 : ");
                     int inputMileage = sc.nextInt();
                     sc.nextLine();
 
-                    if (inputMileage > nowLoginMember.getMember_mileage()) {
+                    if (inputMileage > nowLoginMember.getMemberMileage()) {
                         System.out.println("==============================================");
                         System.out.println("고객님께서 보유하신 마일리지를 초과하였습니다. 다시 입력해주세요.");
                         break;
-                    } else if (inputMileage <= nowLoginMember.getMember_mileage()) {
+                    } else if (inputMileage <= nowLoginMember.getMemberMileage()) {
                         System.out.println("==============================================");
                         System.out.println("결제 금액인 " + price + "원에 마일리지 " + inputMileage + "원을 정상적으로 사용하였습니다. 남은 금액 결제를 진행해주십쇼.");
                         price = price - inputMileage;
-                        int usedMileage = nowLoginMember.getMember_mileage() - inputMileage;
-                        ms.updateMileage(usedMileage, nowLoginMember);
+                        int usedMileage = nowLoginMember.getMemberMileage() - inputMileage;
+                        nowLoginMember.setMemberMileage(usedMileage);
+                        ms.updateMileage(nowLoginMember);
                         return;
                     } else {
                         System.out.println("==============================================");
@@ -111,12 +112,12 @@ public class PaymentManager {
         int getMileage = (int) (price * 0.05);
         System.out.println("==============================================");
         System.out.println("적립된 마일리지 금액은" + getMileage + "입니다.");
-        int afterMileage = nowLoginMember.getMember_mileage() + getMileage;
+        int afterMileage = nowLoginMember.getMemberMileage() + getMileage;
         nowLoginMember.addMileage(getMileage);
-        ms.updateMileage(afterMileage, nowLoginMember);
+        ms.updateMileage(nowLoginMember);
 
         System.out.println("==============================================");
-        System.out.println("현재 보유하신 마일리지는 " + nowLoginMember.getMember_mileage() + "원 입니다.");
+        System.out.println("현재 보유하신 마일리지는 " + nowLoginMember.getMemberMileage() + "원 입니다.");
     }
 
     public void NonMemberCardChoice() {
@@ -132,7 +133,7 @@ public class PaymentManager {
         System.out.println("적립된 마일리지 금액은" + getMileage + "원 입니다.");
         nowLoginMember.addMileage(getMileage);
         System.out.println("==============================================");
-        System.out.println("현재 보유하신 마일리지는 " + nowLoginMember.getMember_mileage() + "원 입니다.");
+        System.out.println("현재 보유하신 마일리지는 " + nowLoginMember.getMemberMileage() + "원 입니다.");
 
     }
 
