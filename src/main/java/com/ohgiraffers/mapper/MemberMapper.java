@@ -12,7 +12,7 @@ public interface MemberMapper {
     int insertNonMember(MemberDTO memberDTO);
     MemberDTO signUpIdCheck(Map<String, Object> map);
 
-
+    MemberDTO loginCheck(Map<String, Object> map);
 
     MemberDTO nowLoginMember(String id);
 
