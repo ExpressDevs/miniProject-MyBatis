@@ -23,12 +23,14 @@
         ,member_age
         ,id
         ,password
+        ,member_login
         )
         VALUES (
         #{memberName}
         ,#{memberAge}
         ,#{id}
         ,#{password}
+        ,1
         )
     </insert>
 
@@ -36,10 +38,12 @@
         INSERT INTO tbl_member(
                                 id
                                 ,password
+                                ,member_login
                                 )
         VALUES (
         #{id}
         ,#{password}
+        ,0
         )
     </insert>
 
