@@ -36,11 +36,12 @@
         INSERT INTO tbl_member(
                                 id
                                 ,password
+                                ,member_login
                                 )
         VALUES (
         #{id}
         ,#{password}
-        )
+        ,0)
     </insert>
 
     <select id="signUpIdCheck" resultMap="idCheckResultMap">
