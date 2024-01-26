@@ -23,12 +23,14 @@
         ,member_age
         ,id
         ,password
+        ,member_login
         )
         VALUES (
         #{memberName}
         ,#{memberAge}
         ,#{id}
         ,#{password}
+        ,1
         )
     </insert>
 
@@ -41,7 +43,8 @@
         VALUES (
         #{id}
         ,#{password}
-        ,0)
+        ,0
+        )
     </insert>
 
     <select id="signUpIdCheck" resultMap="idCheckResultMap">
